@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Страница аналитики</title>
+
+    <link rel="stylesheet" href="/static/css/css_analytic_page.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body class="">
+    <script>
+        var content = JSON.parse('{{ content|escapejs }}');
+    </script>
+    <!--=== Header ===-->
+        <div class="header-v8">
+            <div class="col-sm-12 col-xs-12">
+                <div class="topbar-hello">Страница аналитичиской информации по процедурам.</div>
+            </div>
+        </div>
+
+    <!--=== End Header ===-->
+    <!-- Main Content -->
+    <div class="container margin-bottom-40">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tab-v4 margin-bottom-40">
+                    <!-- Tab Heading -->
+                    <div class="tab-heading">
+                        <h2>Аналитический график.</h2>
+                    </div>
+                    <div class="col-sm-12">
+                        <ul class="filter">
+                            <li>
+                                <select id="curator-select">
+                                    <option value="0">Все</option>
+                                </select>
+                            </li>
+                            <li>
+                                <div class="add-file" data-toggle="modal" data-target="#add_file_modal">Добавить файл</div>
+                            </li>
+                        </ul>
+                        <div class="chart-block">
+                            <canvas id="myChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    {% include 'forms/notification.html' %}
+    {% include 'forms/form_add_file.html' %}
+    <div class="load-block">
+        <img src="/static/img/loader.gif" class="load-block">
+    </div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
+    <script src="/static/js/js_analytic_page.js"></script>
+</body>
+</html>
