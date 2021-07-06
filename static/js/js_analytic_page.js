@@ -15,12 +15,14 @@ $(function () {
         let url = '/api_v1/get_file/';
         post_form(form, url, $(this).attr('id'));
     });
-
+    
+    // Выбор куратора из списка
     body.on('change', '#curator-select', function (event) {
         add_date_page();
     })
 });
 
+// Создание графика на странице
 function add_date_page() {
     let list_data = get_list_labels();
     var ctx = document.getElementById('myChart').getContext('2d');
@@ -63,24 +65,28 @@ function add_date_page() {
     });
  }
 
+// Вывод ошибки добавления данных
 function error_display(data) {
     $('#text-notific').text(data['heading']);
     $('#text-message').text(data['text']);
     $('#notification_modal').modal('show');
 }
 
+// Вывод ошибки отправки файла
 function error_post_ajax(data) {
     $('div.load-block').hide();
     $('#text-notific').text('Статус: ' + data.status + data.statusText);
     $('#notification_modal').modal('show');
 }
 
+// Настройки AJAX
 function settings_ajax(xhr, settings) {
      if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
          xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
      }
 }
 
+// Получение CSRFToken
 function getCookie(name) {
     var cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -97,6 +103,7 @@ function getCookie(name) {
     return cookieValue;
 }
 
+// Формирование данных для графика в зависимости от выбранного куратора
 function get_list_labels() {
     var select_curator = $('#curator-select').val();
     let label_list = [];
@@ -137,6 +144,7 @@ function get_list_labels() {
     return {'label': label_list, 'data': data_list}
 }
 
+// Формирование списка куратров
 function add_curator_list() {
     let select_object = $('#curator-select');
     for (let i in content.curator_name){
